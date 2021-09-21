@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>DataSource1</DataSourceReference>
+      <CommandText>select ps.FirstName 'Current Owner', pr.Amount 'Rental Payment', CONCAT(a.Number, ' ',a.Street) 'Property Address', CONCAT(p.Bedroom, ' Bedroom, ',P.Bathroom, ' Bathroom') 'Property Details', pe.Amount, pe.Description, pe.Date
+from [dbo].[Property] AS P
+INNER JOIN OwnerProperty as Op ON p.Id=op.PropertyId
+INNER JOIN Person as Ps ON Op.OwnerId=ps.Id
+INNER JOIN Address AS a on P.AddressId=A.AddressId
+INNER JOIN PropertyRentalPayment as pr ON p.Id=pr.PropertyId
+INNER JOIN PropertyExpense as pe ON p.Id=pe.PropertyId
+WHERE A.AddressId = 12723</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="Current_Owner">
+        <DataField>Current Owner</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Rental_Payment">
+        <DataField>Rental Payment</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="Property_Address">
+        <DataField>Property Address</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Property_Details">
+        <DataField>Property Details</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Amount">
+        <DataField>Amount</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="Description">
+        <DataField>Description</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Date">
+        <DataField>Date</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
